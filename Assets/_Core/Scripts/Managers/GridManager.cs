@@ -1,6 +1,6 @@
 using UnityEngine;
 using Muchwood.Utils;
-using System.Linq;
+using Grid = Muchwood.Grid;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Vector2Int GridSize;
     [SerializeField] private float Spacing;
 
-    [SerializeField, ReadOnly] private Dictionary<Vector2Int, Grid> AllGridDict;    
+    public List<Grid> AllGrids;    
 
 #if UNITY_EDITOR
     [Button]
@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
                 grid.transform.SetParent(transform);
                 grid.SetCoordinate(new Vector2Int(i, j));
 
-                AllGridDict.Add(new Vector2Int(i, j), grid);
+                AllGrids.Add(grid);
             }
         }
     }
@@ -42,7 +42,7 @@ public class GridManager : MonoBehaviour
     [Button]
     private void RemoveGrid()
     {
-        AllGridDict = new Dictionary<Vector2Int, Grid>();
+        AllGrids = new List<Grid>();
         var grids = GetComponentsInChildren<Grid>();
         for (int i = grids.Length - 1; i >= 0; i--)
         {
@@ -53,18 +53,27 @@ public class GridManager : MonoBehaviour
 
     public bool CanBuild(Vector2Int targetCoordinate, Vector2Int buildingSize) 
     {
-        if (targetCoordinate.x + buildingSize.x >= GridSize.x || targetCoordinate.y + buildingSize.y >= GridSize.y)
+        if(targetCoordinate.y + buildingSize.y > GridSize.y)
+            return false;
+
+        if(targetCoordinate.x + buildingSize.x > GridSize.x)
             return false;
 
         for(int i = 0; i < buildingSize.x; i++)
         {
             for(int j = 0; j < buildingSize.y; j++)
             {
-                if (AllGridDict[new Vector2Int(i, j)].isOccupied)
+                if (AllGrids[GetIndex(targetCoordinate + new Vector2Int(i,j))].isOccupied)
                     return false;
             }
         }
 
         return true;
+    }
+
+    public int GetIndex(Vector2Int coordinate)
+    {
+        Debug.Log(GridSize.y * coordinate.x + coordinate.y);
+        return GridSize.y * coordinate.x + coordinate.y;
     }
 }
