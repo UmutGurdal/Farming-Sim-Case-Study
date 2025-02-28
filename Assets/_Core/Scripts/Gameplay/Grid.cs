@@ -1,16 +1,13 @@
+using Muchwood.Utils;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [field: SerializeField, ReadOnly] public Vector2Int Coordinate { get; private set; }
+    public bool isOccupied;
 
-    // Update is called once per frame
-    void Update()
+    public void SetCoordinate(Vector2Int coordinate)
     {
-        
+        Coordinate = coordinate;
     }
 }

@@ -13,13 +13,15 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Vector2Int GridSize;
     [SerializeField] private float Spacing;
 
+    [SerializeField, ReadOnly] private Dictionary<Vector2Int, Grid> AllGridDict;    
+
 #if UNITY_EDITOR
     [Button]
     private void BuildGrid()
     {
         RemoveGrid();
 
-        transform.position = new Vector3((GridSize.x + ((GridSize.x - 1) * Spacing))/2,0, (GridSize.y + ((GridSize.y - 1) * Spacing)) / 2);
+        GameManager.ins.Camera.transform.position = new Vector3(GridSize.x * (1+Spacing)/2f, 40, -12);
 
         for (int i = 0; i < GridSize.x; i++)
         {
@@ -28,17 +30,19 @@ public class GridManager : MonoBehaviour
                 Vector3 pos = new Vector3(i + (Spacing * i), 0, j + (Spacing * j));
 
                 var grid = (Grid)PrefabUtility.InstantiatePrefab(GridPrefab);
-                grid.transform.SetParent(transform);
                 grid.transform.SetPositionAndRotation(pos, Quaternion.identity);
+                grid.transform.SetParent(transform);
+                grid.SetCoordinate(new Vector2Int(i, j));
+
+                AllGridDict.Add(new Vector2Int(i, j), grid);
             }
         }
-
-        transform.position = Vector3.zero;
     }
 
     [Button]
     private void RemoveGrid()
     {
+        AllGridDict = new Dictionary<Vector2Int, Grid>();
         var grids = GetComponentsInChildren<Grid>();
         for (int i = grids.Length - 1; i >= 0; i--)
         {
@@ -46,4 +50,21 @@ public class GridManager : MonoBehaviour
         }
     }
 #endif
+
+    public bool CanBuild(Vector2Int targetCoordinate, Vector2Int buildingSize) 
+    {
+        if (targetCoordinate.x + buildingSize.x >= GridSize.x || targetCoordinate.y + buildingSize.y >= GridSize.y)
+            return false;
+
+        for(int i = 0; i < buildingSize.x; i++)
+        {
+            for(int j = 0; j < buildingSize.y; j++)
+            {
+                if (AllGridDict[new Vector2Int(i, j)].isOccupied)
+                    return false;
+            }
+        }
+
+        return true;
+    }
 }

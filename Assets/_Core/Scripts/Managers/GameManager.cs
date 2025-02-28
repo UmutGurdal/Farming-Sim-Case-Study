@@ -7,6 +7,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private bool ManuallyValidate;
 #endif
     [ReadOnly] public Camera Camera;
+    [ReadOnly] public GridManager GridManager;
 
     private void OnValidate()
     {
@@ -24,5 +25,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void Init()
     {
         Camera = Camera.main;
+        GridManager = GetComponentInChildren<GridManager>();
     }
 }
