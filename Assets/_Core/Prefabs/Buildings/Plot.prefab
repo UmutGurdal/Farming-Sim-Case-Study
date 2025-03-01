@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingSize: {x: 2, y: 2}
+  ConstructedOnGrid: {fileID: 0}
   buildingLayer:
     serializedVersion: 2
     m_Bits: 128

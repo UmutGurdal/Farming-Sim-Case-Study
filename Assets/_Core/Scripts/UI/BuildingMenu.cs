@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BuildingMenu : MonoBehaviour
+public class BuildingMenu : UIMenu
 {
     private void OnEnable()
     {
@@ -14,6 +14,6 @@ public class BuildingMenu : MonoBehaviour
 
     private void OnConstructed() 
     {
-        gameObject.SetActive(false);
+        HideMenu();
     }
 }

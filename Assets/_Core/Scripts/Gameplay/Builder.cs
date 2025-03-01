@@ -67,7 +67,7 @@ public class Builder : MonoBehaviour
         }
 
         else
-            instantiatedBuilding.gameObject.SetActive(false);
+            instantiatedBuilding?.gameObject.SetActive(false);
 
         if (touch.phase == TouchPhase.Ended)
         {
