@@ -5950,6 +5950,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8ae24b100407f4ea88d190e70c7856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridLayer:
+    serializedVersion: 2
+    m_Bits: 64
   buildings:
   - {fileID: -5536125358869902962, guid: 6e52aa3d212990b45bfc1a2a61345de2, type: 3}
   - {fileID: 8069540153282943043, guid: 6b12a0eef79395840bf10bfafaca0423, type: 3}

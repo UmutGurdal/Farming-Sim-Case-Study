@@ -1,8 +1,12 @@
 using UnityEngine;
 using Grid = Muchwood.Grid;
+using System;
 
 public class Builder : MonoBehaviour
 {
+    public static event Action OnBuildingDestroyed;
+
+    [SerializeField] private LayerMask gridLayer;
     [SerializeField] private Building[] buildings;
 
     private Building SelectedBuilding;
@@ -13,16 +17,13 @@ public class Builder : MonoBehaviour
     private void OnEnable()
     {
         BuildingSelector.OnBuildingSelected += OnBuildingSelected;
+        Building.OnBuildingHold += OnBuildingHold;
     }
 
     private void OnDisable()
     {
         BuildingSelector.OnBuildingSelected -= OnBuildingSelected;
-    }
-
-    private void Update()
-    {
-        Debug.Log("TouchCount: " + Input.touchCount);
+        Building.OnBuildingHold -= OnBuildingHold;
     }
 
     private void FixedUpdate()
@@ -37,9 +38,8 @@ public class Builder : MonoBehaviour
 
         var ray = Camera.main.ScreenPointToRay(new Vector3(touch.position.x, touch.position.y, 0));
 
-        //Debug.DrawRay(ray.origin, ray.direction, Color.red);
 
-        if (Physics.Raycast(ray, out var hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out var hit, Mathf.Infinity, gridLayer))
         {
             if (hit.transform.TryGetComponent<Grid>(out Grid grid))
             {
@@ -51,26 +51,44 @@ public class Builder : MonoBehaviour
                 if (instantiatedBuilding == null)
                     instantiatedBuilding = Instantiate(SelectedBuilding);
 
+                instantiatedBuilding.gameObject.SetActive(true);
                 instantiatedBuilding.transform.position = grid.transform.position;
 
                 if (touch.phase == TouchPhase.Ended)
                 {
                     GameManager.ins.GridManager.Constructed(lastInteractedGrid.Coordinate, instantiatedBuilding.BuildingSize);
+                    instantiatedBuilding.ConstructedOnGrid = lastInteractedGrid;
                     instantiatedBuilding = null;
+                    SelectedBuilding = null;
                     return;
                 }
             }
+
         }
 
-        if(touch.phase == TouchPhase.Ended)
+        else
+            instantiatedBuilding.gameObject.SetActive(false);
+
+        if (touch.phase == TouchPhase.Ended)
         {
+            if (instantiatedBuilding == null)
+                return;
+
             Destroy(instantiatedBuilding.gameObject);
             instantiatedBuilding = null;
+            SelectedBuilding = null;
+            OnBuildingDestroyed?.Invoke();
         }
     }
 
-    private void OnBuildingSelected(int selectedID) 
+    private void OnBuildingSelected(int selectedID)
     {
         SelectedBuilding = buildings[selectedID];
+    }
+
+    private void OnBuildingHold(Building building)
+    {
+        SelectedBuilding = building;
+        instantiatedBuilding = building;
     }
 }

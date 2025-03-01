@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 362536255057477408}
   - component: {fileID: 8069540153282943043}
-  m_Layer: 0
+  - component: {fileID: 8491954955617783852}
+  m_Layer: 7
   m_Name: Plot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingSize: {x: 2, y: 2}
+  buildingLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!65 &8491954955617783852
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133984572766202288}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.4951735, y: 0.2648529, z: 4.4822755}
+  m_Center: {x: 2.2376847, y: 0.09672989, z: 2.2570302}
 --- !u!1001 &5898082709820049087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 1602080951680000, guid: a047ed049826c25489b573d3fd23d2a6, type: 3}
       propertyPath: m_Name
       value: SM_Env_Dirt_Rows_Center_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602080951680000, guid: a047ed049826c25489b573d3fd23d2a6, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1602080951680000, guid: a047ed049826c25489b573d3fd23d2a6, type: 3}
       propertyPath: m_IsActive

@@ -17,12 +17,16 @@ namespace Muchwood
         {
             BuildingSelector.OnBuildingSelected += OnBuildingSelected;
             GridManager.OnConstructed += OnGridUpdated;
+            Building.OnBuildingHold += OnBuildingHold;
+            Builder.OnBuildingDestroyed += OnBuildingDestroyed;
         }
 
         private void OnDisable()
         {
             BuildingSelector.OnBuildingSelected -= OnBuildingSelected;
             GridManager.OnConstructed -= OnGridUpdated;
+            Building.OnBuildingHold -= OnBuildingHold;
+            Builder.OnBuildingDestroyed -= OnBuildingDestroyed;
         }
 
         private void Awake()
@@ -47,6 +51,16 @@ namespace Muchwood
         }
 
         private void OnGridUpdated()
+        {
+            UpdateMeshMaterial(gridMaterial);
+        }
+
+        private void OnBuildingHold(Building _)
+        {
+            UpdateMeshMaterial(isOccupied ? occupiedMaterial : avaliableMaterial);
+        }
+
+        private void OnBuildingDestroyed() 
         {
             UpdateMeshMaterial(gridMaterial);
         }

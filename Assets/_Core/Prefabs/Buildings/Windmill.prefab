@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1092101857724551701}
   - component: {fileID: 3440070814079030945}
-  m_Layer: 0
+  - component: {fileID: 9002433494863558819}
+  m_Layer: 7
   m_Name: Windmill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +48,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingSize: {x: 2, y: 2}
+  buildingLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!65 &9002433494863558819
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871062545009711612}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.5988016, y: 12.445608, z: 5.3405404}
+  m_Center: {x: 2.3253798, y: 5.3352404, z: 2.1702702}
 --- !u!1001 &3070264249073902166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,9 +80,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1092101857724551701}
     m_Modifications:
+    - target: {fileID: 1229315764071908, guid: 2c837521d4253d74f844a10fd29446ef, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425293750907662, guid: 2c837521d4253d74f844a10fd29446ef, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1853804450421360, guid: 2c837521d4253d74f844a10fd29446ef, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Windmill_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853804450421360, guid: 2c837521d4253d74f844a10fd29446ef, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4959979268377148, guid: 2c837521d4253d74f844a10fd29446ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -121,6 +158,10 @@ PrefabInstance:
     - target: {fileID: 1823867089197456, guid: f7203cb2de5041f449bcbebfdb0694c4, type: 3}
       propertyPath: m_Name
       value: SM_Bld_ConcreteBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823867089197456, guid: f7203cb2de5041f449bcbebfdb0694c4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4798710816451428, guid: f7203cb2de5041f449bcbebfdb0694c4, type: 3}
       propertyPath: m_LocalScale.x

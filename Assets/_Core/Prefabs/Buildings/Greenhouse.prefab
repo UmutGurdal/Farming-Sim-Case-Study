@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5752051166931435069}
   - component: {fileID: -5536125358869902962}
-  m_Layer: 0
+  - component: {fileID: 636148140135284395}
+  m_Layer: 7
   m_Name: Greenhouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildingSize: {x: 3, y: 4}
+  buildingLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!65 &636148140135284395
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857619803228395840}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.0138454, y: 4.9906435, z: 9.295005}
+  m_Center: {x: 3.4460201, y: 2.4953218, z: 4.7015452}
 --- !u!1001 &7274507755109397945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54,9 +79,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5752051166931435069}
     m_Modifications:
+    - target: {fileID: 1403366585556652, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470393736884762, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498796915981798, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1595881250035684, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Greenhouse_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1595881250035684, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756974831247686, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894799917865314, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4229869433677180, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
       propertyPath: m_LocalScale.x
@@ -112,6 +161,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 64567479861093568, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+    - {fileID: 65262594115975600, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
+    - {fileID: 65084196623484724, guid: d18a58184e042eb4cbffba24a88ad835, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -88,9 +88,19 @@ public class GridManager : MonoBehaviour
         OnConstructed?.Invoke();
     }
 
+    public void Destruct(Vector2Int targetCoordinate, Vector2Int buildingSize) 
+    {
+        for (int i = 0; i < buildingSize.x; i++)
+        {
+            for (int j = 0; j < buildingSize.y; j++)
+            {
+                AllGrids[GetIndex(targetCoordinate + new Vector2Int(i, j))].isOccupied = false;
+            }
+        }
+    }
+
     public int GetIndex(Vector2Int coordinate)
     {
-        Debug.Log(GridSize.y * coordinate.x + coordinate.y);
         return GridSize.y * coordinate.x + coordinate.y;
     }
 }
