@@ -1,6 +1,8 @@
 using UnityEngine;
 using Muchwood.Utils;
 using Grid = Muchwood.Grid;
+using System;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -8,6 +10,8 @@ using System.Collections.Generic;
 
 public class GridManager : MonoBehaviour
 {
+    public static event Action OnConstructed;
+
     [SerializeField] private Grid GridPrefab;
     [Space]
     [SerializeField] private Vector2Int GridSize;
@@ -69,6 +73,19 @@ public class GridManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void Constructed(Vector2Int targetCoordinate, Vector2Int buildingSize) 
+    {
+        for (int i = 0; i < buildingSize.x; i++)
+        {
+            for (int j = 0; j < buildingSize.y; j++)
+            {
+                AllGrids[GetIndex(targetCoordinate + new Vector2Int(i, j))].isOccupied = true;
+            }
+        }
+
+        OnConstructed?.Invoke();
     }
 
     public int GetIndex(Vector2Int coordinate)

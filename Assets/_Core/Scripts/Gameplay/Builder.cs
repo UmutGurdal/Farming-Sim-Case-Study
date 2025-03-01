@@ -3,17 +3,21 @@ using Grid = Muchwood.Grid;
 
 public class Builder : MonoBehaviour
 {
-    [SerializeField] private Building SelectedBuilding;
+    [SerializeField] private Building[] buildings;
+
+    private Building SelectedBuilding;
 
     private Building instantiatedBuilding;
+    private Grid lastInteractedGrid;
 
     private void OnEnable()
     {
-        
+        BuildingSelector.OnBuildingSelected += OnBuildingSelected;
     }
 
     private void OnDisable()
     {
+        BuildingSelector.OnBuildingSelected -= OnBuildingSelected;
     }
 
     private void Update()
@@ -42,11 +46,31 @@ public class Builder : MonoBehaviour
                 if (GameManager.ins.GridManager.CanBuild(grid.Coordinate, SelectedBuilding.BuildingSize) == false)
                     return;
 
-                if(instantiatedBuilding == null)
+                lastInteractedGrid = grid;
+
+                if (instantiatedBuilding == null)
                     instantiatedBuilding = Instantiate(SelectedBuilding);
 
                 instantiatedBuilding.transform.position = grid.transform.position;
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    GameManager.ins.GridManager.Constructed(lastInteractedGrid.Coordinate, instantiatedBuilding.BuildingSize);
+                    instantiatedBuilding = null;
+                    return;
+                }
             }
         }
+
+        if(touch.phase == TouchPhase.Ended)
+        {
+            Destroy(instantiatedBuilding.gameObject);
+            instantiatedBuilding = null;
+        }
+    }
+
+    private void OnBuildingSelected(int selectedID) 
+    {
+        SelectedBuilding = buildings[selectedID];
     }
 }

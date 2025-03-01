@@ -155,3 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Coordinate>k__BackingField: {x: 0, y: 0}
   isOccupied: 0
+  gridMaterial: {fileID: 2100000, guid: 0b8d1ad7a974b9647b5478eb67b5c6a7, type: 2}
+  occupiedMaterial: {fileID: 2100000, guid: 3e14bc89e6670534ea07968d14e919c9, type: 2}
+  avaliableMaterial: {fileID: 2100000, guid: ea7cde4a96d165e4fb14f6d90efe05fe, type: 2}
