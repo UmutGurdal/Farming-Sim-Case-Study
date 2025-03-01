@@ -1,16 +1,33 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CropSelector : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static event Action<int> OnCropSelected;
+
+    public int CropID;
+
+    private Button button;
+
+    private void Awake()
     {
-        
+        button = GetComponent<Button>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        button.onClick.AddListener(OnSelectCrop);
+    }
+
+    private void OnDisable()
+    {
+        button.onClick.RemoveListener(OnSelectCrop);
+    }
+
+    private void OnSelectCrop()
+    {
+        UIManager.ins.CropMenu.HideMenu();
+        OnCropSelected?.Invoke(CropID);
     }
 }

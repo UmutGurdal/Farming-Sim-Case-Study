@@ -17,13 +17,13 @@ public class Building : MonoBehaviour
 
     [SerializeField] private LayerMask buildingLayer;
 
-    private void OnEnable()
+    internal virtual void OnEnable()
     {
         BuildingSelector.OnBuildingSelected += OnBuildingSelected;
         GridManager.OnConstructed += OnConstructed;
     }
 
-    private void OnDisable()
+    internal virtual void OnDisable()
     {
         BuildingSelector.OnBuildingSelected -= OnBuildingSelected;
         GridManager.OnConstructed -= OnConstructed;

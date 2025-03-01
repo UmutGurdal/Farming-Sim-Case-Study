@@ -10,6 +10,7 @@ public class GameManager : MonoSingleton<GameManager>
     [ReadOnly] public GridManager GridManager;
     [ReadOnly] public Builder Builder;
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
         Init();
@@ -17,10 +18,16 @@ public class GameManager : MonoSingleton<GameManager>
             Debug.Log("GameManager Validated");
         ManuallyValidate = false;
     }
+#endif
 
     private void Awake()
     {
         Init();
+    }
+
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
     }
 
     private void Init()

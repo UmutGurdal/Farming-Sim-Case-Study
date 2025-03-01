@@ -51,6 +51,9 @@ MonoBehaviour:
   buildingLayer:
     serializedVersion: 2
     m_Bits: 128
+  crops:
+  - {fileID: 1231627285293353973, guid: 6c4067e3ef77edf4cbd4b4215c444b60, type: 3}
+  - {fileID: 2037192299555856441, guid: 8a5ae8e18d20604439711b32b1de7d12, type: 3}
 --- !u!65 &8491954955617783852
 BoxCollider:
   m_ObjectHideFlags: 0

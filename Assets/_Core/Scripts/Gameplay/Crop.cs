@@ -33,6 +33,17 @@ public class Crop : MonoBehaviour
             currentPhase += 1;
         }    
     }
+
+    public bool TryHarvest() 
+    {
+        if (currentPhase >= CropData.Length)
+        {
+            Destroy(gameObject);
+            return true;
+        }
+
+        return false;
+    }
 }
 
 [System.Serializable]

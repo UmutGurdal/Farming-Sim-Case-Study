@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4899862821760365093
 Transform:
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CropData:
-  - PhaseDuration: 15
+  - PhaseStart: 0
     PhaseModel: {fileID: 0}
-  - PhaseDuration: 20
+  - PhaseStart: 0
     PhaseModel: {fileID: 0}
-  - PhaseDuration: 10
+  - PhaseStart: 0
     PhaseModel: {fileID: 0}

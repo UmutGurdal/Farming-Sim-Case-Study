@@ -8,7 +8,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public BuildingMenu BuildingMenu;
     public CropMenu CropMenu;
-
+#if UNITY_EDITOR
     private void OnValidate()
     {
         Init();
@@ -16,6 +16,7 @@ public class UIManager : MonoSingleton<UIManager>
             Debug.Log("UIManager Validated");
         ManuallyValidate = false;
     }
+#endif
     private void Awake()
     {
         Init();
